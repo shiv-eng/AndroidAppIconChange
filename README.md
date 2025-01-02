@@ -1,19 +1,7 @@
 # Launcher Lab
 
-Launcher Lab is a sample Android application that demonstrates how to dynamically change an app’s launcher icon at runtime. It showcases a few **Jetpack Compose** features—such as modal bottom sheets, sliders, and lazy lists—while maintaining a modern and visually appealing UI with a **gradient background**.
+Launcher Lab is a sample Android application that demonstrates how to dynamically change an app’s launcher icon at runtime. It showcases a few **Jetpack Compose** features—such as modal bottom sheets, sliders, and lazy lists—while maintaining a modern and visually appealing UI.
 
-## Table of Contents
-
-1. [Overview](#overview)  
-2. [Features](#features)  
-3. [Implementation Details](#implementation-details)  
-4. [Getting Started](#getting-started)  
-5. [Usage](#usage)  
-6. [Preview](#preview)  
-7. [Contributing](#contributing)  
-8. [License](#license)
-
----
 
 ## Overview
 
@@ -56,11 +44,17 @@ Launcher Lab is a sample Android application that demonstrates how to dynamicall
    - **LazyColumn** lists available icons.
    - **ModalBottomSheet** confirms changing the launcher icon.
 
----
 
-## Upcomng Feature
+## Upcoming Feature
 
 App icon change remotely.
+
+🚀 About Me
+Hi! My name is Shivangi Mundra, I work as a Software Developer and like to expand my skill set in my spare time.
+
+If you have any questions or want to connect, feel free to reach out to me on :
+
+- [LinkedIn](https://www.linkedin.com/in/shivangi-mundra-9a31b65b/)
 
 ## 🚀 About Me
 Hi! My name is Shivangi Mundra, I work as a Software Developer and like to expand my skill set in my spare time.
