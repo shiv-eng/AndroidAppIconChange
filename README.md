@@ -44,21 +44,17 @@ Launcher Lab is a sample Android application that demonstrates how to dynamicall
    - **LazyColumn** lists available icons.
    - **ModalBottomSheet** confirms changing the launcher icon.
 
+---
 
 ## Upcoming Feature
 
 App icon change remotely.
 
-🚀 About Me
+## About Me
 Hi! My name is Shivangi Mundra, I work as a Software Developer and like to expand my skill set in my spare time.
 
 If you have any questions or want to connect, feel free to reach out to me on :
 
 - [LinkedIn](https://www.linkedin.com/in/shivangi-mundra-9a31b65b/)
 
-## 🚀 About Me
-Hi! My name is Shivangi Mundra, I work as a Software Developer and like to expand my skill set in my spare time.
 
-If you have any questions or want to connect, feel free to reach out to me on :
-
-- [LinkedIn](https://www.linkedin.com/in/shivangi-mundra-9a31b65b/)
