@@ -50,10 +50,6 @@ Launcher Lab is a sample Android application that demonstrates how to dynamicall
 https://github.com/user-attachments/assets/5ed9f71e-f572-456a-be4c-3aaf4ece58ef
 
 ---
-## Upcoming Feature
-
-App icon change remotely.
-
 ## About Me
 Hi! My name is Shivangi Mundra, I work as a Software Developer and like to expand my skill set in my spare time.
 
