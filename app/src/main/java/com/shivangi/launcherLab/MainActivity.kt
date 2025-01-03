@@ -30,9 +30,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.shivangi.launcherLab.ui.theme.LauncherLabTheme
 
-/**
- * App launcher icons (activity-alias).
- */
+
 enum class AppLauncherIcons(val themeName: String, val imageRes: Int) {
     Default_Theme(".DefaultTheme",    R.mipmap.ic_launcher),
     Theme_One     (".MyIconOne",      R.mipmap.my_launch_icon_one),
@@ -95,7 +93,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
 @Composable
 fun MyApp(onChangeAppIcon: (AppLauncherIcons) -> Unit) {
-    // Which icon the user has currently selected to view as "big"
+  
     var selectedIcon by rememberSaveable { mutableStateOf(AppLauncherIcons.Default_Theme) }
 
     //bottomsheet
