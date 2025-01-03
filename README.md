@@ -45,7 +45,11 @@ Launcher Lab is a sample Android application that demonstrates how to dynamicall
    - **ModalBottomSheet** confirms changing the launcher icon.
 
 ---
+## Video
 
+https://github.com/user-attachments/assets/5ed9f71e-f572-456a-be4c-3aaf4ece58ef
+
+---
 ## Upcoming Feature
 
 App icon change remotely.
