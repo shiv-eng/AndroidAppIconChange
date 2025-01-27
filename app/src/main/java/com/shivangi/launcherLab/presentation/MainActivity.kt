@@ -34,10 +34,6 @@ import com.shivangi.launcherLab.R
 import com.shivangi.launcherLab.ui.theme.LauncherLabTheme
 import kotlinx.coroutines.launch
 
-<<<<<<< HEAD:app/src/main/java/com/shivangi/launcherLab/presentation/MainActivity.kt
-=======
-
->>>>>>> b4388bea9f46d763b6dee543cd8e39dbbd5e4307:app/src/main/java/com/shivangi/launcherLab/MainActivity.kt
 enum class AppLauncherIcons(val themeName: String, val imageRes: Int) {
     Default_Theme(".DefaultTheme", R.mipmap.ic_launcher),
     Theme_One(".MyIconOne", R.mipmap.my_launch_icon_one),
@@ -97,10 +93,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
 @Composable
 fun MyApp(onChangeAppIcon: (AppLauncherIcons) -> Unit) {
-<<<<<<< HEAD:app/src/main/java/com/shivangi/launcherLab/presentation/MainActivity.kt
-=======
-  
->>>>>>> b4388bea9f46d763b6dee543cd8e39dbbd5e4307:app/src/main/java/com/shivangi/launcherLab/MainActivity.kt
+
     var selectedIcon by rememberSaveable { mutableStateOf(AppLauncherIcons.Default_Theme) }
     val infoSheetState = rememberModalBottomSheetState()
     var showInfoSheet by remember { mutableStateOf(false) }
