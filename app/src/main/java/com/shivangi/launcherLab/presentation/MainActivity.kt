@@ -1,4 +1,5 @@
-package com.shivangi.launcherLab
+// MainActivity.kt
+package com.shivangi.launcherLab.presentation
 
 import android.content.ComponentName
 import android.content.Context
@@ -21,27 +22,28 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.*
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.content.edit
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.shivangi.launcherLab.R
 import com.shivangi.launcherLab.ui.theme.LauncherLabTheme
+import kotlinx.coroutines.launch
 
-/**
- * App launcher icons (activity-alias).
- */
 enum class AppLauncherIcons(val themeName: String, val imageRes: Int) {
-    Default_Theme(".DefaultTheme",    R.mipmap.ic_launcher),
-    Theme_One     (".MyIconOne",      R.mipmap.my_launch_icon_one),
-    Theme_Two     (".MyIconTwo",      R.mipmap.my_launch_icon_two),
-    Theme_Three   (".MyIconThree",    R.mipmap.my_launch_icon_three),
+    Default_Theme(".DefaultTheme", R.mipmap.ic_launcher),
+    Theme_One(".MyIconOne", R.mipmap.my_launch_icon_one),
+    Theme_Two(".MyIconTwo", R.mipmap.my_launch_icon_two),
+    Theme_Three(".MyIconThree", R.mipmap.my_launch_icon_three),
+    Remote_Theme(".RemoteDynamicIcon", R.mipmap.ic_remote_placeholder),
 }
 
 const val CURRENT_ICON_KEY = "CURRENT_ICON_KEY"
-const val PREFERENCE_NAME  = "MY_APP_SHARED_PREF"
+const val PREFERENCE_NAME = "MY_APP_SHARED_PREF"
 
 class MainActivity : ComponentActivity() {
 
@@ -67,13 +69,11 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun changeIcon(selectedIcon: AppLauncherIcons, currentIcon: String) {
-        // 1) Enable new selected icon
         packageManager.setComponentEnabledSetting(
             ComponentName(this, "$packageName${selectedIcon.themeName}"),
             PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
             PackageManager.DONT_KILL_APP
         )
-        // 2) Disable or default the old one
         val oldState = if (currentIcon == AppLauncherIcons.Default_Theme.themeName)
             PackageManager.COMPONENT_ENABLED_STATE_DISABLED
         else
@@ -84,10 +84,8 @@ class MainActivity : ComponentActivity() {
             oldState,
             PackageManager.DONT_KILL_APP
         )
-        // 3) Store in SharedPreferences
         sharedPref.edit {
             putString(CURRENT_ICON_KEY, selectedIcon.themeName)
-            apply()
         }
     }
 }
@@ -95,10 +93,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
 @Composable
 fun MyApp(onChangeAppIcon: (AppLauncherIcons) -> Unit) {
-    // Which icon the user has currently selected to view as "big"
     var selectedIcon by rememberSaveable { mutableStateOf(AppLauncherIcons.Default_Theme) }
-
-    //bottomsheet
     val infoSheetState = rememberModalBottomSheetState()
     var showInfoSheet by remember { mutableStateOf(false) }
 
@@ -107,10 +102,18 @@ fun MyApp(onChangeAppIcon: (AppLauncherIcons) -> Unit) {
             TopAppBar(
                 title = {
                     Text(
-                        "Launcher Lab",
+                        "Dynamic App Icons",
                         fontSize = 20.sp,
                         color = MaterialTheme.colorScheme.onPrimary
                     )
+                },
+                actions = {
+                    TextButton(onClick = {
+                        onChangeAppIcon(AppLauncherIcons.Remote_Theme)
+                        showInfoSheet = true
+                    }) {
+                        Text("Change Remotely", color = MaterialTheme.colorScheme.onPrimary)
+                    }
                 },
                 colors = topAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
             )
@@ -129,7 +132,6 @@ fun MyApp(onChangeAppIcon: (AppLauncherIcons) -> Unit) {
                     .padding(16.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-
                 Text(
                     text = "Tap on the icon below to change the app icon.",
                     fontSize = 16.sp,
@@ -138,7 +140,6 @@ fun MyApp(onChangeAppIcon: (AppLauncherIcons) -> Unit) {
                         .fillMaxWidth()
                         .padding(bottom = 16.dp)
                 )
-
 
                 Box(
                     modifier = Modifier
@@ -160,7 +161,6 @@ fun MyApp(onChangeAppIcon: (AppLauncherIcons) -> Unit) {
                     )
                 }
 
-                // Slider with dot indicator at the bottom
                 IconSlider(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -172,7 +172,6 @@ fun MyApp(onChangeAppIcon: (AppLauncherIcons) -> Unit) {
                 )
             }
 
-            // Bottom sheet just to notify user that icon is set
             if (showInfoSheet) {
                 ModalBottomSheet(
                     onDismissRequest = { showInfoSheet = false },
@@ -232,7 +231,6 @@ fun IconSlider(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Slider
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier.fillMaxWidth(),
@@ -255,7 +253,6 @@ fun IconSlider(
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        // Dot indicator
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             icons.forEachIndexed { i, _ ->
                 val dotColor = if (i == selectedIndex) {
